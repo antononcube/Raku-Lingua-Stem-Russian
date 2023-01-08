@@ -79,23 +79,19 @@ Here is a pipeline example using the CLI function `get-tokens` of the package
 ["Grammar::TokenProcessing"](https://github.com/antononcube/Raku-Grammar-TokenProcessing),
 [AAp1]:
 
-```shell
-get-tokens ./RecommenderPhrases-template | RussianStem --format=raku
 ```
-```
-# ()
+get-tokens ./DataQueryPhrases-template | RussianStem --format=raku 
+
+# ("ассоциац", "ассоциирован", "ассоциирова", "безопасн", "восходя", "выбер", "заказа", "комбайн", "крестообразн", 
+#  "поверхност", "мутирова", "обзор", "обобщ", "переименова", "пол", "просмотрет", "разгруппирова", "разделител",
+#  "распла", "расстав", "символ", "слит", "слиян", "сплит", "табулирова", "тольк", "убыва", "уверен", "форм", 
+#  "формат", "формирова", "формул", "широк")
 ```
 
 **Remark:** These kind of tokens (literals) transformations are used in the packages
 ["DSL::Bulgarian"](https://github.com/antononcube/Raku-DSL-Bulgarian), [AAp2],
 and
 ["DSL::Russian"](https://github.com/antononcube/Raku-DSL-Russian), [AAp3],
-
--------
-
-## Other implementations
-
-TBD...
 
 
 -------
@@ -108,7 +104,7 @@ TBD...
 
 ## TODO
 
-- [ ] DONE Respect the word case in the returned result. 
+- [X] DONE Respect the word case in the returned result. 
 
    - `RussianStem('ТАБЛА')` should return `'ТАБЛ'`. 
    - (Not `'табл'` as it currently does.) 
