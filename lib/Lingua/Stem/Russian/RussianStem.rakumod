@@ -48,7 +48,7 @@ multi RussianStem(Str:D $word --> Str) {
     # The code in this function is very close to the original Perl code of stem_word in
     # https://github.com/neilb/Lingua-Stem-Ru/blob/master/lib/Lingua/Stem/Ru.pm
 
-    my ($start, $RV) = |($word ~~ $RVRE);
+    my ($start, $RV) = |($word.lc ~~ $RVRE);
 
     return $word unless $RV;
 
@@ -82,7 +82,7 @@ multi RussianStem(Str:D $word --> Str) {
         $RV ~~ s/нн$/н/;
     }
 
-    return $start ~ $RV;
+    return $word.substr(0, $start.chars) ~ $word.substr($start.chars, $RV.Str.chars);
 }
 
 #| Synonym of RussianStem
