@@ -1,0 +1,26 @@
+use v6.d;
+use Test;
+
+use lib '.';
+use lib './lib';
+
+use Lingua::Stem::Russian;
+
+my %stemWords =
+        "гуля" => ["гулял", "гуляла", "гуляли"],
+        "ход" => ["ходить", "ходил", "ходили"],
+        "езд" => ["ездить", "езда", "езд"];
+
+%stemWords = %stemWords.map({ $_.value.Array X=> $_.key }).flat;
+
+plan 2;
+
+## 1
+is %stemWords.elems, 9, 'expected length';
+
+## 2
+is reduce(&infix:<&&>, %stemWords.map({RussianStem($_.key) eq $_.value })),
+        True,
+        'correct stems';
+
+done-testing;

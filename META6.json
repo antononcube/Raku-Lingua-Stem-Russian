@@ -1,0 +1,28 @@
+{
+  "name": "Lingua::Stem::Russian",
+  "description": "Package for stemming Russian words.",
+  "version": "0.1.0",
+  "perl": "6.d",
+  "authors": [
+    "Anton Antonov"
+  ],
+  "auth": "zef:antononcube",
+  "depends": [],
+  "build-depends": [],
+  "test-depends": [],
+  "provides": {
+    "Lingua::Stem::Russian": "lib/Lingua/Stem/Russian/RussianStem.rakumod"
+  },
+  "resources": [
+  ],
+  "license": "Artistic-2.0",
+  "tags": [
+    "stem",
+    "stemming",
+    "stemmer",
+    "Russian",
+    "inflectional stemmer"
+  ],
+  "api": "1",
+  "source-url": "https://github.com/antononcube/Raku-Lingua-Stem-Russian.git"
+}

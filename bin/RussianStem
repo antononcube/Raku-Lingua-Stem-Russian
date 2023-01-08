@@ -1,0 +1,37 @@
+#!/usr/bin/env raku
+use v6.d;
+
+use Lingua::Stem::Russian;
+
+multi format-output(Str $format, @output) {
+    given $format.lc {
+        when $_ eq 'raku' && @output.elems == 1 { say @output[0].raku; }
+        when @output.elems == 1                 { say @output[0]; }
+        when $_ (elem) <string text>            { say @output.join(' '); }
+        when $_ (elem) <lines>                  { .say for @output; }
+        default                                 { say @output.raku; }
+    }
+}
+
+#| Finds stems of Russian words in text.
+multi sub MAIN(Str $text,                     #= Text to spilt and its words stemmed.
+               Str :$splitter = '\W+',        #= String to make a split regex with.
+               Str :$format= 'text'         #= Output format one of 'text', 'lines', or 'raku'.
+               ) {
+    my @res = RussianStem($text.split(/<{ $splitter }>/));
+    format-output($format, @res);
+}
+
+#| Finds stems of Russian words.
+multi sub MAIN(*@words,                       #= Words to be stemmed.
+               Str :$format= 'text'         #= Output format one of 'text', 'lines', or 'raku'.
+               ) {
+    format-output($format, RussianStem(@words))
+}
+
+#| Finds stems of Russian words in (pipeline) input.
+multi sub MAIN(Str :$format= 'text'         #= Output format one of 'text', 'lines', or 'raku'.
+               ) {
+    my @words = lines.join(' ').words;
+    format-output($format, RussianStem(@words))
+}
