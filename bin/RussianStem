@@ -3,6 +3,8 @@ use v6.d;
 
 use Lingua::Stem::Russian;
 
+my %*SUB-MAIN-OPTS = :named-anywhere;
+
 multi format-output(Str $format, @output) {
     given $format.lc {
         when $_ eq 'raku' && @output.elems == 1 { say @output[0].raku; }

@@ -60,10 +60,10 @@ multi RussianStem(Str:D $word --> Str) {
 
         # note 'step 1a: ', $RV;
 
-        if ($RV ~~ s/<{$ADJECTIVE}>//) {
-            $RV ~~ s/<{$PARTICIPLE}>//;
+        if ($RV ~~ s/ <{$ADJECTIVE}> //) {
+            $RV ~~ s/ <{$PARTICIPLE}> //;
         } else {
-            $RV ~~ s/<{$NOUN}>// unless $RV ~~ s/<{$VERB}>//;
+            $RV ~~ s/ <{$NOUN}> // unless $RV ~~ s/ <{$VERB}> //;
         }
         # note 'step 1b: ',$RV;
     }
