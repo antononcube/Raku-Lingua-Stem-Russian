@@ -16,17 +16,11 @@ The `RussianStem` function is used to find stems:
 use Lingua::Stem::Russian;
 say RussianStem('всходы')
 ```
-```
-# всход
-```
 
 `RussianStem` also works with lists of words:
 
 ```perl6
 say RussianStem('Всходы урожая ожидаются с терпением, питьем и беконом.'.words)
-```
-```
-# (Всход урож ожида с терпением, пит и беконом.)
 ```
 
 The function `russian-word-stem` can be used as a synonym of `RussianStem`.
@@ -40,39 +34,19 @@ The package provides the CLI function `RussianStem`. Here is its usage message:
 ```shell
 RussianStem --help
 ```
-```
-# Usage:
-#   RussianStem <text> [--splitter=<Str>] [--format=<Str>] -- Finds stems of Russian words in text.
-#   RussianStem [<words> ...] [--format=<Str>] -- Finds stems of Russian words.
-#   RussianStem [--format=<Str>] -- Finds stems of Russian words in (pipeline) input.
-#   
-#     <text>              Text to spilt and its words stemmed.
-#     --splitter=<Str>    String to make a split regex with. [default: '\W+']
-#     --format=<Str>      Output format one of 'text', 'lines', or 'raku'. [default: 'text']
-#     [<words> ...]       Words to be stemmed.
-```
 
 Here are example shell commands of using the CLI function `RussianStem`:
 
 ```shell
 RussianStem Какие
 ```
-```
-# Как
-```
 
 ```shell
 RussianStem --format=raku "Модуль Raku, предоставляющий процедуру для русского языка."
 ```
-```
-# ["Модул", "Raku", "предоставля", "процедур", "для", "русск", "язык", ""]
-```
 
 ```shell
 RussianStem Проверить корректность подбора по словарям и правилам
-```
-```
-# Провер корректност подбор по словар и правил
 ```
 
 Here is a pipeline example using the CLI function `get-tokens` of the package 
@@ -81,9 +55,6 @@ Here is a pipeline example using the CLI function `get-tokens` of the package
 
 ```shell
 get-tokens ./RecommenderPhrases-template | RussianStem --format=raku
-```
-```
-# ()
 ```
 
 **Remark:** These kind of tokens (literals) transformations are used in the packages
