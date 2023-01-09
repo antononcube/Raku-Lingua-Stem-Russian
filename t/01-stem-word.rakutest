@@ -7,19 +7,22 @@ use lib './lib';
 use Lingua::Stem::Russian;
 
 my %stemWords =
-        "гуля" => ["гулял", "гуляла", "гуляли"],
-        "ход" => ["ходить", "ходил", "ходили"],
-        "езд" => ["ездить", "езда", "езд"];
+        гуля => <гулял гуляла гуляли>,
+        ход => <ходить ходил ходили>,
+        езд => <ездить езда езд>,
+        отрицательн => <отрицательный отрицательная отрицательное отрицательные>,
+        независим => <независимый независимая независимое независимые>,
+        факторизац => <факторизация факторизацию>;
 
 %stemWords = %stemWords.map({ $_.value.Array X=> $_.key }).flat;
 
 plan 2;
 
 ## 1
-is %stemWords.elems, 9, 'expected length';
+is %stemWords.elems, 19, 'expected length';
 
 ## 2
-is reduce(&infix:<&&>, %stemWords.map({RussianStem($_.key) eq $_.value })),
+is reduce(&infix:<&&>, %stemWords.map({ RussianStem($_.key) eq $_.value })),
         True,
         'correct stems';
 
